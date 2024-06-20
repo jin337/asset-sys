@@ -65,9 +65,6 @@ const Index = () => {
                   <IconSearch />
                 </Avatar>
                 <Avatar size='extra-small'>
-                  <IconLanguage />
-                </Avatar>
-                <Avatar size='extra-small'>
                   <IconBell />
                 </Avatar>
                 <Avatar size='extra-small'>
