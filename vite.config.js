@@ -42,7 +42,7 @@ export default defineConfig({
         entryFileNames: 'assets/chunk/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
         manualChunks: {
-          'chunk-vendor': ['react', 'react-dom', 'react-router-dom', 'douyinfe']
+          'chunk-vendor': ['react', 'react-dom', 'react-router-dom']
         }
       }
     }
