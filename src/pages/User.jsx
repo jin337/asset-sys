@@ -1,8 +1,10 @@
 import {} from 'react'
 import { Col, Row, Typography, Button, Card, Form, Table,Dropdown } from '@douyinfe/semi-ui'
 import { IconPlus, IconSearch,IconMore } from '@douyinfe/semi-icons'
+import { useNavigate } from 'react-router-dom'
 
 const User = () => {
+  const navigate = useNavigate()
   const columns = [
     {
       title: '用户账户',
@@ -16,7 +18,7 @@ const User = () => {
       title: '角色',
       dataIndex: 'name2',
       render: (text) => {
-        return  <Typography.Text link={{ href: '/user' }}>{text}</Typography.Text>
+        return <div  className='ml-6 text-sm text-blue-500 font-bold cursor-pointer' onClick={() => navigate('/user')}>{text}</div>
       }
     },
     {

@@ -2,8 +2,11 @@ import { useState } from 'react'
 import { Col, Row, Typography, Button, Card, Form, Table, Dropdown, Modal } from '@douyinfe/semi-ui'
 import { IconPlus, IconSearch, IconMore } from '@douyinfe/semi-icons'
 
+import { useNavigate } from 'react-router-dom'
+
 const Project = () => {
   const [visible, setVisible] = useState(false)
+  const navigate = useNavigate()
   const columns = [
     {
       title: '项目编码',
@@ -13,7 +16,7 @@ const Project = () => {
       title: '项目名称',
       dataIndex: 'name1',
       render: (text) => {
-        return <Typography.Text link={{ href: '/project-dashboard/overview' }}>{text}</Typography.Text>
+        return <div  className='ml-6 text-sm text-blue-500 font-bold cursor-pointer' onClick={() => navigate('/project-dashboard/overview')}>{text}</div>
       }
     },
     {
