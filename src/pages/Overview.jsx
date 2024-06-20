@@ -121,7 +121,7 @@ const Overview = () => {
         <Row className="mt-5">
           <Col span={7}>
             <Card>
-              <Row type="flex" align="start">
+              <Row type="flex" align="top">
                 <Col><Avatar size='small' style={{ backgroundColor: '#626aea'}}><IconToken size="large" /></Avatar></Col>
                 <Col span={18} offset={1}>
                   <Typography.Title heading={6}>兴建路（恒广路-恒竞路）</Typography.Title>
@@ -131,9 +131,9 @@ const Overview = () => {
               </Row>
             </Card>
           </Col>
-          <Col span={7} offset="1">
+          <Col span={7} offset={1}>
             <Card>
-              <Row type="flex" align="start">
+              <Row type="flex" align="top">
                 <Col><Avatar size='small' style={{ backgroundColor: '#626aea'}} ><IconToken size="large" /></Avatar></Col>
                 <Col span={18} offset={1}>
                   <Typography.Title heading={6}>兴建路（恒广路-恒竞路）</Typography.Title>
@@ -145,7 +145,7 @@ const Overview = () => {
           </Col>
           <Col span={7} offset={1}>
             <Card>
-              <Row type="flex" align="start">
+              <Row type="flex" align="top">
                 <Col ><Avatar size='small' style={{ backgroundColor: '#626aea'}} ><IconToken size="large" /></Avatar></Col>
                 <Col span={18} offset={1}>
                   <Typography.Title heading={6}>兴建路（恒广路-恒竞路）</Typography.Title>
