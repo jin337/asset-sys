@@ -19,7 +19,7 @@ const Menu = ({ className, items, header, select }) => {
   }
 
   return (
-    <div className={`w-[80px] bg-white border-r ${className}`}>
+    <div className={`dark:bg-[#16161a] dark:border-zinc-500/100 w-[80px] bg-white border-r ${className}`}>
       <div className='p-2 pt-5 text-center'>{header}</div>
       <ul>
         {items.map((item) => (

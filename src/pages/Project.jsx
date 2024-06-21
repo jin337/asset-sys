@@ -1,15 +1,16 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { Col, Row, Typography, Button, Card, Form, Table, Dropdown, Modal } from '@douyinfe/semi-ui'
 import { IconPlus, IconSearch, IconMore } from '@douyinfe/semi-icons'
 
-import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addTitle } from '../store/reducers/project'
 
 const Project = () => {
-  const [visible, setVisible] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [visible, setVisible] = useState(false)
   const columns = [
     {
       title: '项目编码',
@@ -216,7 +217,7 @@ const Project = () => {
           <Row>
             <Col span={11}>
               <Form.Select
-                field='Role'
+                field='Role3'
                 label='项目类别'
                 showClear
                 style={{ width: '100%' }}
@@ -231,7 +232,7 @@ const Project = () => {
               offset={2}
             >
               <Form.Select
-                field='Role2'
+                field='Role4'
                 label='建设方式'
                 showClear
                 style={{ width: '100%' }}
@@ -245,7 +246,7 @@ const Project = () => {
           <Row>
             <Col span={11}>
               <Form.Select
-                field='Role'
+                field='Role5'
                 label='建设类型'
                 showClear
                 style={{ width: '100%' }}
@@ -260,7 +261,7 @@ const Project = () => {
               offset={2}
             >
               <Form.Select
-                field='Role2'
+                field='Role6'
                 label='优先级'
                 showClear
                 style={{ width: '100%' }}
@@ -274,7 +275,7 @@ const Project = () => {
           <Row>
             <Col span={11}>
               <Form.Select
-                field='Role'
+                field='Role7'
                 showClear
                 label='关联主项目'
                 style={{ width: '100%' }}
@@ -288,7 +289,7 @@ const Project = () => {
               offset={2}
             >
               <Form.Select
-                field='Role2'
+                field='Role8'
                 label='负责人'
                 style={{ width: '100%' }}
                 showClear
@@ -303,7 +304,7 @@ const Project = () => {
             <Col span={11}>
               <Form.DatePicker
                 type='monthRange'
-                field='Role'
+                field='Role9'
                 label='建设年限'
                 style={{ width: '100%' }}
               ></Form.DatePicker>
@@ -314,20 +315,20 @@ const Project = () => {
             >
               <Form.DatePicker
                 type='month'
-                field='Role2'
+                field='Role10'
                 label='计划开工时间'
                 style={{ width: '100%' }}
               ></Form.DatePicker>
             </Col>
           </Row>
           <Form.Input
-            field='key1'
+            field='key2'
             label='建设地点'
             placeholder='输入'
             showClear
           />
           <Form.TextArea
-            field='key1'
+            field='key3'
             showClear
             label='规模及内容描述'
             placeholder='请输入内容'

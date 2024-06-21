@@ -6,3 +6,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #f7f8fa;
 }
+body {
+  color: var(--semi-color-text-0);
+  background-color: var( --semi-color-bg-0);
+}

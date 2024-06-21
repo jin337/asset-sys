@@ -1,17 +1,18 @@
-import { Outlet } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+
 import { Layout, Nav } from '@douyinfe/semi-ui'
 import { IconUser, IconDesktop, IconSetting, IconKanban, IconList, IconServer, IconFile } from '@douyinfe/semi-icons'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+
 import { useDispatch } from 'react-redux'
 import { addTitle } from '../store/reducers/project'
 
 const { Content, Sider } = Layout
 
 const Dashboard = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
-  const dispatch = useDispatch()
   const [selectedKey, setSelectKey] = useState()
   const itemsSider = [
     {

@@ -1,12 +1,13 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { Col, Row, Typography, Button, Card, Form, Table, Dropdown, Modal } from '@douyinfe/semi-ui'
 import { IconPlus, IconSearch, IconMore } from '@douyinfe/semi-icons'
-import { useNavigate } from 'react-router-dom'
 
 
 const Standard = () => {
-  const [visible, setVisible] = useState(false)
   const navigate = useNavigate()
+  const [visible, setVisible] = useState(false)
   const columns = [
     {
       title: '标准编码',
@@ -170,7 +171,7 @@ const Standard = () => {
             <Form.Select.Option value='admin1'>2</Form.Select.Option>
           </Form.Select>
           <Form.TextArea
-            field='key1'
+            field='key2'
             label='备注'
           />
         </Form>

@@ -1,22 +1,26 @@
+import { useState, useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+
 import { useSelector, useDispatch } from 'react-redux'
 import { addTitle } from '../store/reducers/project'
+import { switchTheme } from '../store/reducers/common'
 
-import { Layout, Dropdown, Space, Avatar, Image, Row, Col, Typography } from '@douyinfe/semi-ui'
-import { IconBell, IconSearch, IconSun, IconUserCircle, IconClose } from '@douyinfe/semi-icons'
+import { Layout, Dropdown, Space, Image, Row, Col, Typography, Button } from '@douyinfe/semi-ui'
+import { IconBellStroked, IconSearchStroked, IconSun, IconMoon, IconUserCircleStroked, IconClose } from '@douyinfe/semi-icons'
 import { IconAvatar, IconConfig, IconChangelog, IconTable, IconPopover, IconToken } from '@douyinfe/semi-icons-lab'
 
 import Menu from '../components/Menu'
-import { useState, useEffect } from 'react'
+const { Header, Sider, Content } = Layout
 
 const Index = () => {
   const navigate = useNavigate()
-  const location = useLocation()
   const dispatch = useDispatch()
+  const location = useLocation()
   const project = useSelector((state) => state.project)
+  const common = useSelector((state) => state.common)
   const [menuSelect, setMenuSelect] = useState()
+  const [theme, setTheme] = useState()
 
-  const { Header, Sider, Content } = Layout
   const itemsSider = [
     {
       itemKey: 'dashboard',
@@ -56,6 +60,7 @@ const Index = () => {
     },
   ]
 
+  // 判断导航选中
   useEffect(() => {
     if (location.pathname) {
       let key = location.pathname
@@ -67,10 +72,37 @@ const Index = () => {
     }
   }, [location])
 
-  // 清除
+  // 判断主题
+  useEffect(() => {
+    const key = sessionStorage.getItem('theme') ? sessionStorage.getItem('theme') : common.theme
+    setTheme(key)
+
+    const body = document.body
+    if (key == 'light') {
+      body.removeAttribute('theme-mode')
+    } else {
+      body.setAttribute('theme-mode', 'dark')
+    }
+  }, [])
+
+  // 清除header标题
   const clearTitle = () => {
     dispatch(addTitle(null))
-    navigate(-1)
+    navigate('/project')
+  }
+
+  // 切换主题
+  const checkTheme = () => {
+    const body = document.body
+    if (body.hasAttribute('theme-mode')) {
+      body.removeAttribute('theme-mode')
+    } else {
+      body.setAttribute('theme-mode', 'dark')
+    }
+
+    const key = theme == 'light' ? 'dark' : 'light'
+    setTheme(key)
+    dispatch(switchTheme(key))
   }
 
   return (
@@ -90,19 +122,21 @@ const Index = () => {
         />
       </Sider>
       <Layout>
-        <Header className='bg-white border-b px-6 py-4'>
+        <Header className='dark:bg-[#16161a] dark:border-zinc-500/100 bg-white border-b px-6 py-4'>
           <Row>
             <Col span={12}>
               {!!project.title && (
                 <div className='flex items-center'>
                   <IconClose
+                    className='cursor-pointer'
                     style={{ color: '#999' }}
                     onClick={clearTitle}
                   />
                   <Typography.Text
                     type='secondary'
                     strong
-                  >&nbsp;{project.title}
+                  >
+                    &nbsp;{project.title}
                   </Typography.Text>
                 </div>
               )}
@@ -111,16 +145,23 @@ const Index = () => {
               span={12}
               className='text-right'
             >
-              <Space spacing='loose'>
-                <Avatar size='extra-small'>
-                  <IconSearch />
-                </Avatar>
-                <Avatar size='extra-small'>
-                  <IconBell />
-                </Avatar>
-                <Avatar size='extra-small'>
-                  <IconSun />
-                </Avatar>
+              <Space spacing='medium'>
+                <Button
+                  theme='borderless'
+                  type='tertiary'
+                  icon={<IconSearchStroked size='extra-large' />}
+                />
+                <Button
+                  theme='borderless'
+                  type='tertiary'
+                  icon={<IconBellStroked size='extra-large' />}
+                />
+                <Button
+                  theme='borderless'
+                  type='tertiary'
+                  icon={theme == 'light' ? <IconMoon size='extra-large' /> : <IconSun size='extra-large' />}
+                  onClick={checkTheme}
+                />
                 <Dropdown
                   position='bottomRight'
                   render={
@@ -130,12 +171,11 @@ const Index = () => {
                     </Dropdown.Menu>
                   }
                 >
-                  <Avatar
-                    color='blue'
-                    size='extra-small'
-                  >
-                    <IconUserCircle />
-                  </Avatar>
+                  <Button
+                    theme='borderless'
+                    type='primary'
+                    icon={<IconUserCircleStroked size='extra-large' />}
+                  />
                 </Dropdown>
               </Space>
             </Col>

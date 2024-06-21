@@ -1,7 +1,7 @@
 import {} from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Col, Row, Typography, Button, Card, Form, Table,Dropdown } from '@douyinfe/semi-ui'
 import { IconPlus, IconSearch,IconMore } from '@douyinfe/semi-icons'
-import { useNavigate } from 'react-router-dom'
 
 const User = () => {
   const navigate = useNavigate()
