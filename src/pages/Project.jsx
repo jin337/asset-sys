@@ -3,37 +3,47 @@ import { Col, Row, Typography, Button, Card, Form, Table, Dropdown, Modal } from
 import { IconPlus, IconSearch, IconMore } from '@douyinfe/semi-icons'
 
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addTitle } from '../store/reducers/project'
 
 const Project = () => {
   const [visible, setVisible] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const columns = [
     {
       title: '项目编码',
-      dataIndex: 'owner'
+      dataIndex: 'owner',
     },
     {
       title: '项目名称',
       dataIndex: 'name1',
       render: (text) => {
-        return <div  className='ml-6 text-sm text-blue-500 font-bold cursor-pointer' onClick={() => navigate('/project-dashboard/overview')}>{text}</div>
-      }
+        return (
+          <div
+            className='ml-6 text-sm text-blue-500 font-bold cursor-pointer'
+            onClick={() => linkDec(text)}
+          >
+            {text}
+          </div>
+        )
+      },
     },
     {
       title: '类型',
-      dataIndex: 'name2'
+      dataIndex: 'name2',
     },
     {
       title: '建设方式',
-      dataIndex: 'name3'
+      dataIndex: 'name3',
     },
     {
       title: '建设类型',
-      dataIndex: 'name4'
+      dataIndex: 'name4',
     },
     {
       title: '形象进度',
-      dataIndex: 'name5'
+      dataIndex: 'name5',
     },
     {
       title: '操作',
@@ -53,8 +63,8 @@ const Project = () => {
             <IconMore />
           </Dropdown>
         )
-      }
-    }
+      },
+    },
   ]
   const data = [
     {
@@ -64,7 +74,7 @@ const Project = () => {
       name2: '新建',
       name3: '代建',
       name4: '市政基础设施/市政道路',
-      name5: '开工建设'
+      name5: '开工建设',
     },
     {
       key: '2',
@@ -73,12 +83,17 @@ const Project = () => {
       name2: '续建',
       name3: '自建',
       name4: '载体办公设施建设',
-      name5: '已完工'
-    }
+      name5: '已完工',
+    },
   ]
   const pagination = {
     total: 90,
-    showTotal: true
+    showTotal: true,
+  }
+
+  const linkDec = (text) => {
+    dispatch(addTitle(text))
+    navigate('/project-dashboard/overview')
   }
 
   const handleOk = () => {
@@ -94,15 +109,18 @@ const Project = () => {
   }
 
   return (
-    <div className="m-5">
+    <div className='m-5'>
       <Row>
         <Col span={12}>
           <div className='flex items-center'>
             <Typography.Title heading={3}>项目管理</Typography.Title>
-            <div  className='ml-6 text-base text-blue-500 font-bold'>全部项目（2）</div>
+            <div className='ml-6 text-base text-blue-500 font-bold'>全部项目（2）</div>
           </div>
         </Col>
-        <Col span={12} className="text-right">
+        <Col
+          span={12}
+          className='text-right'
+        >
           <Button
             icon={<IconPlus />}
             theme='solid'
@@ -114,7 +132,10 @@ const Project = () => {
         </Col>
       </Row>
 
-      <Card bordered={false} className="mt-5">
+      <Card
+        bordered={false}
+        className='mt-5'
+      >
         <Form
           layout='horizontal'
           labelPosition='inset'
@@ -155,7 +176,7 @@ const Project = () => {
           />
         </Form>
         <Table
-          className="mt-3"
+          className='mt-3'
           columns={columns}
           dataSource={data}
           pagination={pagination}
@@ -205,7 +226,10 @@ const Project = () => {
                 <Form.Select.Option value='admin1'>2</Form.Select.Option>
               </Form.Select>
             </Col>
-            <Col span={11} offset={2}>
+            <Col
+              span={11}
+              offset={2}
+            >
               <Form.Select
                 field='Role2'
                 label='建设方式'
@@ -231,7 +255,10 @@ const Project = () => {
                 <Form.Select.Option value='admin1'>2</Form.Select.Option>
               </Form.Select>
             </Col>
-            <Col span={11} offset={2}>
+            <Col
+              span={11}
+              offset={2}
+            >
               <Form.Select
                 field='Role2'
                 label='优先级'
@@ -256,7 +283,10 @@ const Project = () => {
                 <Form.Select.Option value='admin1'>2</Form.Select.Option>
               </Form.Select>
             </Col>
-            <Col span={11} offset={2}>
+            <Col
+              span={11}
+              offset={2}
+            >
               <Form.Select
                 field='Role2'
                 label='负责人'
@@ -272,15 +302,18 @@ const Project = () => {
           <Row>
             <Col span={11}>
               <Form.DatePicker
-                type="monthRange"
+                type='monthRange'
                 field='Role'
                 label='建设年限'
                 style={{ width: '100%' }}
               ></Form.DatePicker>
             </Col>
-            <Col span={11} offset={2}>
+            <Col
+              span={11}
+              offset={2}
+            >
               <Form.DatePicker
-                type="month"
+                type='month'
                 field='Role2'
                 label='计划开工时间'
                 style={{ width: '100%' }}
