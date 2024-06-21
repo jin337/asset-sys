@@ -14,7 +14,7 @@ const Index = () => {
   const location = useLocation()
   const dispatch = useDispatch()
   const project = useSelector((state) => state.project)
-  const [menuSelect, setMenuSelect] = useState('dashboard')
+  const [menuSelect, setMenuSelect] = useState()
 
   const { Header, Sider, Content } = Layout
   const itemsSider = [
